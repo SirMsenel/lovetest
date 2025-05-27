@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Romantik Anket</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #fff0f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        #container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        img {
+            max-width: 120px;
+            margin: 10px auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #ff4d6d;
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            margin: 15px 10px 0 10px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            user-select: none;
+            min-width: 140px;
+        }
+        button:hover {
+            background-color: #ff1a47;
+        }
+        button.shrink {
+            transform: scale(0.8);
+            opacity: 0.6;
+        }
+        button.grow {
+            transform: scale(1.4);
+        }
+        #finalText {
+            white-space: pre-line;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #b3003b;
+            margin-top: 30px;
+        }
+        #finalImages {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        #finalImages img {
+            max-width: 130px;
+            border-radius: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="step1">
+            <h2>Bilirsin, seni her şeyden çok seviyorum.<br>Sen de beni seviyor musun?</h2>
+            <button id="btnDunyalar">Dünyalar kadar çok</button>
+            <button id="btnHerseyden">Her şeyden çok</button>
+            <img src="img/dunyalar_kadar.png" alt="Dünyalar kadar çok" />
+            <img src="img/herseyden_cok.png" alt="Her şeyden çok" />
+        </div>
+        <div id="step2" style="display:none;">
+            <h2>Biliyorum ama ben daha çok seviyorummm.</h2>
+            <button id="btnEvet">Evet, sen daha çok!</button>
+            <button id="btnHayir">Hayır, ben daha çok!</button>
+            <img src="img/sag1.png" alt="Sağ 1" />
+        </div>
+        <div id="final" style="display:none;">
+            <div id="finalImages">
+                <img src="img/sol1.png" alt="Sol 1" />
+                <img src="img/sol2.png" alt="Sol 2" />
+            </div>
+            <div id="finalText">
+Benim daha çok sevdiğimi biliyordummmm.
+
+
+Seninle geçen her an, hayatımın en değerli zamanı oluyor.
+Gözlerin bana baktığında, sanki dünya duruyor; sadece sen ve ben kalıyoruz.
+Kalbim, senin varlığınla daha hızlı, daha güçlü atıyor.
+Seni sevmek tarif edilemez bir mutluluk, sen benim en derin huzurum, en büyük ilhamımsın.
+
+Birlikte yazdığımız bu özel hikayede, her sayfa sevgi ve neşeyle dolu.
+Seninle olduğumda, hayatın tüm renkleri daha parlak, tüm sesleri daha anlamlı.
+Seninle paylaştığım hayaller, umutlar ve anılar, bana güç veriyor, beni ben yapıyor.
+
+Biliyorum ki, gerçek aşk böyle bir şey; birbirine destek olmak, en zor günlerde bile el ele tutuşmak.
+Sen benim en güvenli limanım, en büyük mutluluğumsun.
+Sonsuzluğa doğru attığımız her adım, hayatı daha da güzelleştiriyor.
+
+Seninle olmak, her gün yeniden aşık olmak demek.
+Ve ben, seni sonsuza dek sevmeye söz veriyorum. 💖 
+Seni Dünyalar kadar çok çok çok seviyorum
+            </div>
+            <img src="img/sag2.png" alt="Sağ 2" style="margin-top: 30px; border-radius: 18px; max-width: 130px;" />
+        </div>
+    </div>
+
+<script>
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const final = document.getElementById('final');
+
+    const btnDunyalar = document.getElementById('btnDunyalar');
+    const btnHerseyden = document.getElementById('btnHerseyden');
+
+    const btnEvet = document.getElementById('btnEvet');
+    const btnHayir = document.getElementById('btnHayir');
+
+    let hayirCount = 0;
+
+    btnDunyalar.addEventListener('click', () => {
+        step1.style.display = 'none';
+        step2.style.display = 'block';
+    });
+
+    btnHerseyden.addEventListener('click', () => {
+        step1.style.display = 'none';
+        step2.style.display = 'block';
+    });
+
+    btnEvet.addEventListener('click', () => {
+        // Evet seçildiğinde direkt final göster
+        step2.style.display = 'none';
+        final.style.display = 'block';
+    });
+
+    btnHayir.addEventListener('click', () => {
+        hayirCount++;
+        // Evet butonu büyür, Hayır butonu küçülür
+        btnEvet.classList.add('grow');
+        btnHayir.classList.add('shrink');
+        setTimeout(() => {
+            btnEvet.classList.remove('grow');
+            btnHayir.classList.remove('shrink');
+        }, 400);
+
+        // 3 kere hayır seçilirse direkt final
+        if(hayirCount >= 3) {
+            step2.style.display = 'none';
+            final.style.display = 'block';
+        }
+    });
+</script>
+</body>
+</html>
